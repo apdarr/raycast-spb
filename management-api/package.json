@@ -1,0 +1,38 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "supabase-management-api",
+  "title": "Supabase Management API",
+  "description": "Fuzzy-find Supabase Management API endpoints and jump to their docs.",
+  "icon": "extension-icon.png",
+  "author": "apdarr",
+  "platforms": ["macOS"],
+  "categories": ["Developer Tools", "Documentation"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "search-endpoints",
+      "title": "Search Endpoints",
+      "subtitle": "Supabase Management API",
+      "description": "Search Management API endpoints by name or path and open their docs.",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.21",
+    "@raycast/utils": "^2.2.7"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint"
+  }
+}
