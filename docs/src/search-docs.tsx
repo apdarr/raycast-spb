@@ -115,7 +115,7 @@ export default function Command() {
               <Action.CopyToClipboard
                 title="Copy URL"
                 content={entry.url}
-                shortcut={Keyboard.Shortcut.Common.Pin}
+                shortcut={{ modifiers: ["cmd"], key: "c" }}
               />
             </ActionPanel.Section>
             <ActionPanel.Section>

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "ghostty-tabs",
+  "title": "Ghostty Tabs",
+  "description": "List and jump to any open Ghostty tab across all windows.",
+  "icon": "extension-icon.png",
+  "author": "apdarr",
+  "platforms": ["macOS"],
+  "categories": ["Developer Tools"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "switch-tab",
+      "title": "Switch Ghostty Tab",
+      "subtitle": "Ghostty",
+      "description": "Search open Ghostty tabs and jump to one.",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.23",
+    "@raycast/utils": "^2.2.7"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.2.0",
+    "@types/node": "^22.19.17",
+    "@types/react": "^19.0.10",
+    "eslint": "^9.36.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "lint": "ray lint",
+    "fix-lint": "ray lint --fix"
+  }
+}

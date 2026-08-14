@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Action,
   ActionPanel,
-  Clipboard,
   Color,
   Detail,
   Icon,
@@ -90,6 +89,7 @@ export default function Command() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showingDetail, setShowingDetail] = useState(true);
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const { push } = useNavigation();
 
   async function run(force: boolean) {
@@ -101,6 +101,7 @@ export default function Command() {
     setResult(data);
     setError(err);
     setIsLoading(false);
+    setSelectedItemId(data.sizes[0]?.name ?? null);
 
     if (err && data.source !== "live") {
       await showFailureToast(err, { title: "Using cached data - live refresh failed" });
@@ -123,6 +124,8 @@ export default function Command() {
     <List
       isLoading={isLoading}
       isShowingDetail={showingDetail}
+      selectedItemId={selectedItemId ?? undefined}
+      onSelectionChange={setSelectedItemId}
       searchBarPlaceholder="Filter compute sizes (name, vCPUs, memory, IOPS, connections...)"
     >
       {error && result?.source !== "live" ? (
@@ -179,24 +182,11 @@ export default function Command() {
                 </ActionPanel.Section>
 
                 <ActionPanel.Section title="Copy">
-                  <Action
+                  <Action.CopyToClipboard
                     title="Copy Compute Size as Markdown"
                     icon={Icon.Clipboard}
-                    onAction={async () => {
-                      await Clipboard.copy(computeSizeToMarkdown(size));
-                      await showToast({ style: Toast.Style.Success, title: `Copied ${size.name}` });
-                    }}
-                  />
-                  <Action.CopyToClipboard
-                    title="Copy Full Table as Markdown"
-                    icon={Icon.Clipboard}
-                    shortcut={Keyboard.Shortcut.Common.Copy}
-                    content={toMarkdownTable(sizes)}
-                  />
-                  <Action.CopyToClipboard
-                    title="Copy Full Table as CSV"
-                    icon={Icon.Document}
-                    content={toCsv(sizes)}
+                    shortcut={{ modifiers: ["cmd"], key: "c" }}
+                    content={computeSizeToMarkdown(size)}
                   />
                 </ActionPanel.Section>
 
