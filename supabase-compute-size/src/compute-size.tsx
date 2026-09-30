@@ -142,6 +142,7 @@ export default function Command() {
         {sizes.map((size) => (
           <List.Item
             key={size.name}
+            id={size.name}
             title={size.name}
             keywords={[
               size.vcpus,
@@ -209,13 +210,15 @@ export default function Command() {
         ))}
       </List.Section>
 
-      <List.Section title="About">
-        <List.Item
-          title="Auto-refresh"
-          icon={Icon.Clock}
-          accessories={[{ text: `every ${intervalDays} day${intervalDays === 1 ? "" : "s"}` }]}
-        />
-      </List.Section>
+      {sizes.length > 0 ? (
+        <List.Section title="About">
+          <List.Item
+            title="Auto-refresh"
+            icon={Icon.Clock}
+            accessories={[{ text: `every ${intervalDays} day${intervalDays === 1 ? "" : "s"}` }]}
+          />
+        </List.Section>
+      ) : null}
     </List>
   );
 }
